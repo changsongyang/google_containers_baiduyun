@@ -3,10 +3,9 @@ name: sync k8s.gcr.io
 on:
   push:
     branches: 
-     - test
-     - master
+     - main
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron:  '0 */6 * * *'
 
@@ -43,10 +42,10 @@ jobs:
         sudo \
           ${HOME}/sync/imgsync sync \
           --db ${HOME}/sync/bolt.db \
-          --push-to registry.aliyuncs.com \
+          --push-to registry.baidubce.com \
           --password ${{ secrets.PASS }}  \
-          --push-ns=k8sxio  \
-          --user zhangguanzhang@qq.com  \
+          --push-ns=k8sgcrio  \
+          --user 094d5632ce434ac0bb83c603aa3109e6  \
           --command-timeout ${TMOUT:=2h}  \
           --process-limit ${PROCESS:=2} \
           --img-timeout ${IMG_TMOUT:=10m} \
